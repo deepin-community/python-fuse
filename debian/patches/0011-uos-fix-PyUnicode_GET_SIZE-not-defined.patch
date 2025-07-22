@@ -1,0 +1,35 @@
+From 0c62e013e9772636b01026389e40045742fd7a93 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=BC=A0=E4=BA=9A?= <zhangya@uniontech.com>
+Date: Tue, 22 Jul 2025 17:13:11 +0800
+Subject: [PATCH] fix: PyUnicode_GET_SIZE not defined.      SystemError:
+ PY_SSIZE_T_CLEAN macro must be defined for '#' formats
+
+---
+ fuseparts/_fusemodule.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/fuseparts/_fusemodule.c b/fuseparts/_fusemodule.c
+index b26dc61..3f93364 100644
+--- a/fuseparts/_fusemodule.c
++++ b/fuseparts/_fusemodule.c
+@@ -25,6 +25,8 @@
+ #define FUSE_USE_VERSION 26
+ #endif
+ 
++#define PY_SSIZE_T_CLEAN
++
+ #include <Python.h>
+ #include <fuse.h>
+ #include <sys/ioctl.h>
+@@ -105,7 +107,7 @@ ERROR:
+     #define PyString_AsString PyUnicode_AsUTF8
+ #endif
+     #define PyString_Check PyUnicode_Check
+-    #define PyString_Size PyUnicode_GET_SIZE
++    #define PyString_Size PyUnicode_GET_LENGTH
+ #endif
+ 
+ static PyObject *getattr_cb=NULL, *readlink_cb=NULL, *readdir_cb=NULL,
+-- 
+2.20.1
+

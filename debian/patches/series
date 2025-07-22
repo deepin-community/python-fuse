@@ -1,1 +1,2 @@
 10_fix-for-500584.patch
+0011-uos-fix-PyUnicode_GET_SIZE-not-defined.patch
