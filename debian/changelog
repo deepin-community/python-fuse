@@ -1,3 +1,10 @@
+python-fuse (2:1.0.2-1deepin2) unstable; urgency=medium
+
+  * fix: PyUnicode_GET_SIZE not defined.
+        SystemError: PY_SSIZE_T_CLEAN macro must be defined for '#' formats
+
+ -- zhangya <zhangya@uniontech.com>  Tue, 22 Jul 2025 17:32:52 +0200
+
 python-fuse (2:1.0.2-1deepin1) unstable; urgency=medium
 
   * No source change upload against python 3.12.
